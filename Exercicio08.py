@@ -5,7 +5,7 @@ while 1 > 0:
     for i in range(11):
 
         if i == 0:
-            num_tabuda = input('Digite um numero inteiro para ver sua tabuda: ')
+            num_tabuda = input('Digite um numero inteiro para ver sua tabuada: ')
 
             int_num_tab = int(num_tabuda)
 
