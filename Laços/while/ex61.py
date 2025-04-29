@@ -1,10 +1,10 @@
 n = int(input('Digite o primeiro termo: '))
 p = int(input('Digite a razão: '))
-decimo_termo = n + (10-1) * p
+decimo_termo = 1
 
-while True:
+while decimo_termo <= 10:
     print(n, end =" ")
     n += p
-    if n == decimo_termo:
-        print(n, end =" ")
-        break
+    decimo_termo +=1
+
+print('FIM...')
