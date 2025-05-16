@@ -8,41 +8,56 @@ print('*')'''
 
 # Crie uma calculadora com While - pergunto ao usuario 2 valores primeir é denominador peça tbm a operação que vai ser +, -, *, /
 
-n1 = 1
-while True: 
-        try:
-            n2 = int(input('Digite qual a tabuda você que ver: '))
-            operador = int(input('Escolha uma das opeções:\n' \
+def escolha_operacao():
+    print('Escolha uma das opeções:\n' \
             '[1] - Adição\n' \
             '[2] - Subitração\n' \
             '[3] - Multiplicação\n' \
             '[4] - Divisão\n ' \
-            'Faça sua Escolha: '))
-            if operador == 2:
-                n1 = n2 + 1
-            if operador == 4:
-                n1 = n2
-        except:
-            print('VALORES INVALIDOS TENTE NOVAMENTE')
-        else:
-            if operador > 4:
-                print('OPERADOR INVALIDO')
-            else:
-                break
+            '')
+    return int(input('Faça sua Escolha: '))
 
-if operador == 1 or operador == 3:
-    while n1 <= 10:
+def tabuada(numero, operador):
+    contador = 1
+    print(f'\nTabuada {definindo_operacao(operador)} do numero {numero}\n')
+    for i in range (1, 11):
         if operador == 1:
-            print(f'{n1} + {n2} = {n1+n2}')
+            print(f'{i} + {numero} = {i+numero}')
+        elif operador == 2:
+            print(f'{i+numero} - {numero} = {i}')
         elif operador == 3:
-            print(f'{n1} x {n2} = {n1*n2}')
-elif operador == 2: 
-    while (n1 - n2) != 11:
-        if operador == 2 :
-            print(f'{n1} - {n2} = {n1-n2}')
-            n1 += 1
-else:
-    while (n1 / n2 ) != 11:
-        if operador == 4:
-            print(f'{n1} / {n2} = {n1/n2:.0f}')
-            n1 += n2
+            print(f'{i} x {numero} = {i*numero}')
+        else:
+            print(f'{numero * i} / {numero} = {i}')
+    print('')
+
+def definindo_operacao(operacao):
+    ope = {1: 'Adição', 2: 'subitração', 3: 'Mutiplicação', 4:'Divisão'}
+    return ope.get(operacao, 'Operação Invalida')
+
+def validar_entradas():
+    while True:
+        try:
+            numero = int(input('Digite um valor para ver sua tabuada: '))
+            operacao = escolha_operacao()
+            if 1 <= operacao <= 4:
+                tabuada(numero, operacao)
+                break
+            else:
+                print('OPERADOR INVALIDO')
+        except ValueError:
+            print('Erro')
+        except ZeroDivisionError:
+            print('Não existe tabuada de zero')
+
+validar_entradas()
+
+while True:
+    try:
+        continuar = str(input('Gostaria de Ver outra Tabuada [S/N]:')).upper().strip()[0]
+        if 'N' in continuar:
+            break
+        else:
+             validar_entradas()
+    except:
+        print('VALOR INVALIDO DIGITE "S" OU "N"')
